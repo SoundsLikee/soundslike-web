@@ -1,0 +1,12 @@
+{
+    "conventionalCommits.scopes": [
+        "components",
+        "services",
+        "helpers",
+        "constants",
+        "icons",
+        "pages",
+        "hooks",
+        "models"
+    ]
+}
