@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Layout, Button, Input } from "@/components/common";
 
 import { AuthService } from "@/services";
+import { message } from "antd";
 
 export default function RecoveryPage() {
   const [phrase, setPhrase] = useState("");
@@ -26,7 +27,6 @@ export default function RecoveryPage() {
     }
 
     try {
-      AuthService.recovery(phrase, password);
       router.replace("/recovery/complete");
     } catch (e) {
       alert(e);
@@ -37,7 +37,7 @@ export default function RecoveryPage() {
     <Layout height={392}>
       <Wrapper>
         <Input
-          label="E mail"
+          label="ID"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -47,7 +47,12 @@ export default function RecoveryPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button onClick={requestRecovery}>로그인</Button>
+        <Button
+          href="/main"
+          onClick={() => message.success("로그인되었어요 😉")}
+        >
+          로그인
+        </Button>
       </Wrapper>
     </Layout>
   );

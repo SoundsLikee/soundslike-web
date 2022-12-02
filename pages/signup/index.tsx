@@ -26,7 +26,7 @@ function PasswordPhase({ onSubmit }: { onSubmit: (password: string) => void }) {
     <Wrapper>
       <Title style={{ marginBottom: "5.6rem" }}>신규 등록</Title>
       <StyledInput
-        label="E mail"
+        label="ID"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
