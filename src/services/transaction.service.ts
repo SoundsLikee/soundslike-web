@@ -1,32 +1,27 @@
-export type Transaction = {
-  hash: string;
-  type: "receive" | "send";
-  amount: number;
-  resultbalance: number;
-  createdAt: Date;
-};
-
-const transactions: Transaction[] = [];
+import axios from "axios";
 
 class TransactionService {
-  list() {
-    return transactions;
-  }
+  async analyze(mediaUrl: string) {
+    const blob = await fetch(mediaUrl).then((r) => r.blob());
+    const audioFile = new File([blob], "voice.wav", { type: "audio/wav" });
 
-  add(payload: Pick<Transaction, "type" | "amount">) {
-    const balance = transactions.reduce(
-      (acc, curr) => acc + curr.amount * (curr.type === "receive" ? 1 : -1),
-      0
-    );
+    const formData = new FormData(); // preparing to send to the server
 
-    transactions.push({
-      ...payload,
-      hash: Math.random().toString().slice(0, 20),
-      resultbalance: balance + payload.amount,
-      createdAt: new Date(),
-    });
+    formData.append("file", audioFile); // preparing to send to the server
 
-    return transactions;
+    // @TODO: 전송
+    // axios.post("http://localhost:8080/asr/", formData, {
+    //   headers: { "content-type": "multipart/form-data" },
+    // });
+
+    // 응답 mocking 코드 (5초 대기)
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    if (Math.random() < 0.5) {
+      /** 50% 확률로 NotFound 에러 */
+      throw new Error();
+    } else {
+      return true;
+    }
   }
 }
 

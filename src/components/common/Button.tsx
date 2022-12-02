@@ -59,8 +59,8 @@ const Wrapper = styled.a<{ width?: number | string; size?: ButtonSize }>`
     `
     width: fit-content;
     height: fit-content;
-    padding: 1.2rem 2.4rem;
+    padding: 1.8rem 2.8rem;
 
-    font-size: 1.6rem;
+    font-size: 2.2rem;
   `}
 `;

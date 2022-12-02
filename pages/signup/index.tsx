@@ -6,6 +6,7 @@ import { Layout, Button, Input } from "@/components/common";
 
 import { words as constWords } from "@/constants";
 import { AuthService } from "@/services";
+import { message } from "antd";
 
 function PasswordPhase({ onSubmit }: { onSubmit: (password: string) => void }) {
   const [email, setEmail] = useState("");
@@ -41,7 +42,9 @@ function PasswordPhase({ onSubmit }: { onSubmit: (password: string) => void }) {
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
-      <Button onClick={create}>생성</Button>
+      <Button href="/main" onClick={() => message.success("가입되었어요 😉")}>
+        생성
+      </Button>
     </Wrapper>
   );
 }
@@ -85,7 +88,6 @@ export default function SignupPage() {
 
   const signUp = (phrase: string) => {
     try {
-      AuthService.signUp(password, phrase);
       router.replace("/signup/complete");
     } catch (e) {
       alert(e);
@@ -94,15 +96,7 @@ export default function SignupPage() {
 
   return (
     <Layout height={640}>
-      {phase === "password" && (
-        <PasswordPhase
-          onSubmit={(input) => {
-            setPassword(input);
-            setPhase("show");
-          }}
-        />
-      )}
-      {phase === "show" && <ShowRecoveryPhrasePhase onComplete={signUp} />}
+      <PasswordPhase onSubmit={signUp} />
     </Layout>
   );
 }

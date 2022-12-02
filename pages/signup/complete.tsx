@@ -1,24 +1,21 @@
 import styled from "styled-components";
 
 import { Layout, Button } from "@/components/common";
+import { message } from "antd";
 
 export default function SignupCompletePage() {
   return (
     <Layout>
-      <OctoImg src="/images/octo/welcome.png" />
       <Title>
         축하합니다!
         <br />
-        지갑 생성이 완료되었습니다
+        계정 생성이 완료되었습니다
       </Title>
-      <Tip>
-        안전 팁<br />
-        - 공유하지 마세요
-        <br />
-        - 피싱에 유의하세요
-        <br />- 비밀 구문을 잘 보관하세요
-      </Tip>
-      <Button href="/main" width={288}>
+      <Button
+        href="/main"
+        onClick={() => message.success("가입되었어요 😉")}
+        width={288}
+      >
         모두 완료
       </Button>
     </Layout>
